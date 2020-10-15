@@ -26,6 +26,9 @@ g++ -c -m64 -Wall -fno-pie -no-pie -o main.o -std=c++17 main.cpp
 echo "Compile Display_Array.cpp"     # Compile C module.
 g++ -c -m64 -Wall -fno-pie -no-pie -o Display_Array.o -std=c++17 Display_Array.cpp
 
+echo "Compile BubbleSort.cpp"     # Compile C module.
+g++ -c -m64 -Wall -fno-pie -no-pie -o BubbleSort.o -std=c++17 BubbleSort.cpp
+
 echo "Compile ValidInt.cpp"     # Compile C module.
 g++ -c -m64 -Wall -fno-pie -no-pie -o ValidInt.o -std=c++17 ValidInt.cpp
 
@@ -38,13 +41,13 @@ nasm -f elf64 -l Manager.lis -o Manager.o Manager.asm
 echo "Assemble Input_Array.asm"     # Assemble x86 module.
 nasm -f elf64 -l Input_Array.lis -o Input_Array.o Input_Array.asm
 
-echo "Assemble Sum.asm"     # Assemble x86 module.
-nasm -f elf64 -l Sum.lis -o Sum.o Sum.asm
+echo "Assemble sort.asm"     # Assemble x86 module.
+nasm -f elf64 -l sort.lis -o sort.o sort.asm
 
 echo ""
 echo "Link the object files"
 
-g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o atoL.o Input_Array.o Sum.o Display_Array.o
+g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o atoL.o Input_Array.o sort.o Display_Array.o BubbleSort.o
 
 echo ""
 echo "Run the program"
