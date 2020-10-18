@@ -4,20 +4,20 @@
 ;useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.*
 ;See the GNU General Public License for more details.  A copy of the GNU Lesser General Public License 3.0 should have been *
 ;distributed with this function.  If the LGPL does not accompany this software then it is available here:                    *
-;<https:;www.gnu.org/licenses/>.  
+;<https:;www.gnu.org/licenses/>.
 ;
 ;Author information
 ; Author name: Joseph Haddad
 ;
 ;Program information
 ;  Program name: Array sort
-;  Programming languages: 4 modules in C++, 4 module in X86-64, and 1 module in Bash.
-;  Date program began: 2020-Oct-18
-;  Date of last update: 2020-Oct-20
+;  Programming languages: 2 modules in C++, 3 module in X86-64, and 1 module in Bash.
+;  Date program began: 2020-Sep-29
+;  Date of last update: 2020-Oct-5
 ;  Status: This program was tested by the author many times.
 ;
 ;This file
-;  Name: Manager.asm
+;  Name: sort.asm
 ;  Language: X86
 ;  Syntax: Intel
 ;  Assemble: nasm -f elf64 -l Manager.lis -o Manager.o Manager.asm
@@ -26,30 +26,13 @@
 ;
 ;===== Begin code area =======================================================================================
 
-extern printf
-extern scanf                                     ;External C++ function for writing to standard output device
-extern Input_Array
-extern Display_Array
-extern BubbleSort
-global manager                                    ;This makes Manage callable by functions outside of this file.
-
 segment .data                                    ;Place initialized data here
 
-welcomemessage1 db "This program will sum your array of integers",10,0
-welcomemessage2 db "Enter a sequence of long integers separated by white space.",10,0
-welcomemessage3 db "After the last input press enter followed by Control+D", 10, 0
-message4        db "These number were received and placed into the array:", 10, 0
-message5        db "The sum of the %3ld numbers in this array is %3ld.",10,0
-goodbye6        db "The sum will now be returned to the main function.", 10, 0
-
-integerformat db "%ld", 0                         ;general decimal integer
-stringformat db "%s", 0                           ;general string format
 
 segment .bss                                      ;Place un-initialized data here.
-arr: resq 100
 
 segment .text                                     ;Place executable instructions in this segment.
-manager:							                  ;Entry point.  Execution begins here.
+sort:							                  ;Entry point.  Execution begins here.
 
 ;=========== Back up all the integer registers used in this program ==========================================
 ;Omitted from back up are rax, rip.
@@ -59,7 +42,7 @@ push       rbx                                    ;Back up rbx
 push       rcx                                    ;Back up rcx
 push       rdx                                    ;Back up rdx
 push       rsi                                    ;Back up rsi
-push       rdi                                    ;Back up rdi
+;push       rdi                                    ;Back up rdi not doing this so we can return rdi
 push       r8                                     ;Back up r8
 push       r9                                     ;Back up r9
 push       r10                                    ;Back up r10
@@ -68,64 +51,17 @@ push       r12                                    ;Back up r12
 push       r13                                    ;Back up r13
 push       r14                                    ;Back up r14
 push       r15                                    ;Back up r15
-pushf                                             ;Back up rflags
+;pushf                                             ;Back up rflags not doing this to keep %16
 
-;=========== Show the welcome message =========================================================================
+;=========== swap rdi and rsi =========================================================================
+mov r14,rdi
+mov rdi,rsi
+mov rax, r14
 
-mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
-mov        rdi, stringformat
-mov        rsi, welcomemessage1
-call       printf                                 ;Display the message using library function
-
-mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
-mov        rdi, stringformat
-mov        rsi, welcomemessage2
-call       printf                                 ;Display the message using library function
-
-mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
-mov        rdi, stringformat
-mov        rsi, welcomemessage3
-call       printf                                 ;Display the message using library function
-
-;=========== take in user input and verify array =================================================================
-mov rax, 0
-mov rdi, arr
-mov rsi, 100                                        ;size of array
-call        Input_Array      ;rax now holds values
-mov       r15,rax
-;===========print back array =====================================================================================
-mov rax, 0
-mov rdi, arr
-mov rsi, r15
-call Display_Array
-
-;===========call print and return sum ==============================================================================
-
-											
-mov        rax, 0
-mov	   rdi, arr
-mov        rsi, r15 
-call       BubbleSort
-mov        r14, rax                               ; put sum in r14
-             
-                                          
-
-mov        rax,0
-mov        rdi, message5
-mov	   rsi, r15
-mov        rdx, r14
-call printf
-
-mov qword  rax,0
-mov        rdi, stringformat
-mov        rsi, goodbye6
-call       printf                                 ;Display the message using library function
-
-mov        rax, r14
 ;=========== restore all the integer registers used in this program =======================================================
 
 
-popf                                              ;Restore rflags
+;popf                                              ;Restore rflags
 pop        r15                                    ;Restore r15
 pop        r14                                    ;Restore r14
 pop        r13                                    ;Restore r13
@@ -134,7 +70,7 @@ pop        r11                                    ;Restore r11
 pop        r10                                    ;Restore r10
 pop        r9                                     ;Restore r9
 pop        r8                                     ;Restore r8
-pop        rdi                                    ;Restore rdi
+;pop        rdi                                    ;Restore rdi
 pop        rsi                                    ;Restore rsi
 pop        rdx                                    ;Restore rdx
 pop        rcx                                    ;Restore rcx

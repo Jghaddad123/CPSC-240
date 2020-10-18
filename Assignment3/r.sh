@@ -42,7 +42,7 @@ echo "Assemble Input_Array.asm"     # Assemble x86 module.
 nasm -f elf64 -l Input_Array.lis -o Input_Array.o Input_Array.asm
 
 echo "Assemble sort.asm"     # Assemble x86 module.
-nasm -f elf64 -l sort.lis -o sort.o sort.asm
+nasm -f elf64 -l swap.lis -o swap.o swap.asm
 
 echo ""
 echo "Link the object files"
