@@ -38,9 +38,6 @@ segment .data                                    ;Place initialized data here
 welcomemessage1 db "This program will sum your array of integers",10,0
 welcomemessage2 db "Enter a sequence of long integers separated by white space.",10,0
 welcomemessage3 db "After the last input press enter followed by Control+D", 10, 0
-message4        db "These number were received and placed into the array:", 10, 0
-message5        db "The sum of the %3ld numbers in this array is %3ld.",10,0
-goodbye6        db "The sum will now be returned to the main function.", 10, 0
 
 integerformat db "%ld", 0                         ;general decimal integer
 stringformat db "%s", 0                           ;general string format
@@ -93,35 +90,22 @@ mov rdi, arr
 mov rsi, 100                                        ;size of array
 call        Input_Array      ;rax now holds values
 mov       r15,rax
-;===========print back array =====================================================================================
-mov rax, 0
-mov rdi, arr
-mov rsi, r15
-call Display_Array
 
-;===========call print and return sum ==============================================================================
+;===========call sort function ==============================================================================
 
 											
 mov        rax, 0
 mov	   rdi, arr
 mov        rsi, r15 
 call       BubbleSort
-mov        r14, rax                               ; put sum in r14
+mov        r14, rax                               
              
-                                          
+;===========print back array =====================================================================================
+mov rax, 0
+mov rdi, arr
+mov rsi, r15
+call Display_Array
 
-mov        rax,0
-mov        rdi, message5
-mov	   rsi, r15
-mov        rdx, r14
-call printf
-
-mov qword  rax,0
-mov        rdi, stringformat
-mov        rsi, goodbye6
-call       printf                                 ;Display the message using library function
-
-mov        rax, r14
 ;=========== restore all the integer registers used in this program =======================================================
 
 

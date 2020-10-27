@@ -28,11 +28,10 @@ int main() {
     cout << "Welcome to Arrays of Integers\n"
          << "Bought to you by Joseph Haddad\n";
 
-    int returnval=-1;
-    returnval = manager();
+    manager();
 
 
-    cout << "Main received "<<returnval<<" and is not sure what to do with it.\n"
+    cout// << "Main received "<<returnval<<" and is not sure what to do with it.\n"
          << "Main will return 0 to the operating system.   Bye.\n";
 
     return 0;

@@ -35,11 +35,11 @@ extern "C" void Display_Array(long int[],int);
 void Display_Array(long int arr[],int size) {
 int i = 0;
 
-    cout<<"The inputed Array is: ";
+    cout<<"\n\nThe sorted Array is: ";
     while(i<size){
         cout<<arr[i++]<<" ";
     }
-    cout<<"\n";
+    cout<<"\n\n";
 
     return;
 }
