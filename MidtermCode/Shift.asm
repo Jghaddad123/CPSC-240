@@ -62,10 +62,10 @@ mov r14,rdi              ;array
 mov r15,rsi              ;size
 
 Mov r12,r15     ; holds the current count -1
-;dec r12
+dec r12
 
 Mov r13,r15     ; holds the current count
-inc r13
+
 jmp start
 
 
@@ -107,6 +107,9 @@ call       printf
 mov rax, 0                               
 
 mov rdi, r14                                ;send back arr and size
+
+;increase size by 1 due to shift adding a location
+inc r15
 mov rsi, r15
 
 

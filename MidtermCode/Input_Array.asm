@@ -34,6 +34,7 @@ global Input_Array
 segment .data                                     ;Place initialized data here
 
 messageinvalid db "Invalid input please retry:",10,0
+blankline db "",10,0
 
 integerformat db "%ld", 0                         ;general decimal integer
 stringformat db "%s", 0                           ;general string format
@@ -125,7 +126,12 @@ ctrld:
 pop r8
 jumpend:
 
+;========== print blank to endl==================
+mov qword  rax,0
+mov      rdi, blankline
+mov      rsi, rsp
 
+call printf
 
 ;=========== Now cleanup and return to the caller =========================================================================
 

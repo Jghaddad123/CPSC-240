@@ -34,7 +34,6 @@ global manager                                    ;This makes Manage callable by
 
 segment .data                                    ;Place initialized data here
 
-welcomemessage1 db "This program will sum your array of integers",10,0
 welcomemessage2 db "Enter a sequence of long integers separated by white space.",10,0
 welcomemessage3 db "After the last input press enter followed by Control+D", 10, 0
 goodbye6        db "The last value will now be returned to driver.", 10, 0
@@ -68,11 +67,6 @@ push       r15                                    ;Back up r15
 pushf                                             ;Back up rflags
 
 ;=========== Show the welcome message =========================================================================
-
-mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
-mov        rdi, stringformat
-mov        rsi, welcomemessage1
-call       printf                                 ;Display the message using library function
 
 mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
 mov        rdi, stringformat
@@ -119,12 +113,8 @@ mov        rsi, goodbye6
 call       printf                                 ;Display the message using library function
 
 
-
-
-
-
-
 ;============================ move last val in array to rax         NEED TO DO
+dec r15
 mov        rax, [arr + 8 * r15]
 ;=========== restore all the integer registers used in this program =======================================================
 
