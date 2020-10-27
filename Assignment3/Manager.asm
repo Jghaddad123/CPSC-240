@@ -35,7 +35,7 @@ global manager                                    ;This makes Manage callable by
 
 segment .data                                    ;Place initialized data here
 
-welcomemessage1 db "This program will sum your array of integers",10,0
+welcomemessage1 db "This program will sort your array of integers",10,0
 welcomemessage2 db "Enter a sequence of long integers separated by white space.",10,0
 welcomemessage3 db "After the last input press enter followed by Control+D", 10, 0
 

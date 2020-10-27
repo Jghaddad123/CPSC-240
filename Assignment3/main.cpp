@@ -26,7 +26,7 @@ using namespace std;
 
 int main() {
     cout << "Welcome to Arrays of Integers\n"
-         << "Bought to you by Joseph Haddad\n";
+         << "Brought to you by Joseph Haddad\n";
 
     manager();
 
