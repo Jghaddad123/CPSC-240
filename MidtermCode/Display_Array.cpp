@@ -35,7 +35,7 @@ extern "C" void Display_Array(long int[],int);
 void Display_Array(long int arr[],int size) {
 int i = 0;
 
-    cout<<"The values in the array are: ";
+    cout<<"\nThe values in the array are: ";
     while(i<size){
         cout<<arr[i++]<<" ";
     }

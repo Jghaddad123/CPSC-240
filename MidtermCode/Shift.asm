@@ -18,7 +18,7 @@
 ;
 ;
 ;===== Begin code area ======================================================================================================
-
+global Shift
 extern printf
 extern scanf                                     ;External C++ function for writing to standard output device
 
@@ -28,6 +28,7 @@ extern scanf                                     ;External C++ function for writ
 
 segment .data                                     ;Place initialized data here
 
+welcomemessage1 db "The values in the array have been shifted",10,0
 
 
 integerformat db "%ld", 0                         ;general decimal integer
@@ -61,10 +62,10 @@ mov r14,rdi              ;array
 mov r15,rsi              ;size
 
 Mov r12,r15     ; holds the current count -1
-dec r12
+;dec r12
 
 Mov r13,r15     ; holds the current count
-
+inc r13
 jmp start
 
 
@@ -85,16 +86,20 @@ mov  [r14 + 8 * r13], r10                  ;moves previous array[i] into array[i
 jmp Loop
 complete:
 
-mov r10, 0
+mov r10, -1
 mov [r14], r10
 
 
 
 
 
+;=============================================== print output=============================
 
 
-
+mov qword  rax, 0                                 ;Zero indicates no data from SSE will be outputted.
+mov        rdi, stringformat
+mov        rsi, welcomemessage1
+call       printf
 
 
 
