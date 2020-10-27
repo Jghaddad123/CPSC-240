@@ -29,17 +29,16 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
-extern void swap(int *pt1, int *pt2)
+extern "C" void swap(int, int);
 extern "C" void BubbleSort(long int[], int);
 
 void BubbleSort(long int arr[], int size) {
     int i, j;
-    for (i = 0; i < n - 1; i++)
+    for (i = 0; i < size - 1; i++)
         // Last i elements are already in place
-        for (j = 0; j < n - i - 1; j++)
+        for (j = 0; j < size - i - 1; j++)
             if (arr[j] > arr[j + 1])
                 swap(&arr[j], &arr[j + 1]);
     return;

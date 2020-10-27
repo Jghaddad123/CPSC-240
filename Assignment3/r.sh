@@ -41,13 +41,13 @@ nasm -f elf64 -l Manager.lis -o Manager.o Manager.asm
 echo "Assemble Input_Array.asm"     # Assemble x86 module.
 nasm -f elf64 -l Input_Array.lis -o Input_Array.o Input_Array.asm
 
-echo "Assemble sort.asm"     # Assemble x86 module.
+echo "Assemble swap.asm"     # Assemble x86 module.
 nasm -f elf64 -l swap.lis -o swap.o swap.asm
 
 echo ""
 echo "Link the object files"
 
-g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o atoL.o Input_Array.o sort.o Display_Array.o BubbleSort.o
+g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o atoL.o Input_Array.o swap.o Display_Array.o BubbleSort.o
 
 echo ""
 echo "Run the program"
