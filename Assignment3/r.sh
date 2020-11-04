@@ -35,6 +35,9 @@ g++ -c -m64 -Wall -fno-pie -no-pie -o ValidInt.o -std=c++17 ValidInt.cpp
 echo "Assemble atoL.asm"     # Assemble x86 module.
 nasm -f elf64 -l atoL.lis -o atoL.o atoL.asm
 
+echo "Assemble clock.asm"     # Assemble x86 module.
+nasm -f elf64 -l clock.lis -o clock.o clock.asm
+
 echo "Assemble Manager.asm"     # Assemble x86 module.
 nasm -f elf64 -l Manager.lis -o Manager.o Manager.asm
 
@@ -47,7 +50,7 @@ nasm -f elf64 -l swap.lis -o swap.o swap.asm
 echo ""
 echo "Link the object files"
 
-g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o bubblesort.o atoL.o Input_Array.o swap.o Display_Array.o 
+g++ -m64 -fno-pie -no-pie -o executable.out -std=c++17 main.o ValidInt.o Manager.o bubblesort.o atoL.o Input_Array.o swap.o Display_Array.o clock.o
 
 echo ""
 echo "Run the program"

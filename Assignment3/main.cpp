@@ -21,18 +21,28 @@
 */
         #include <iostream>
 extern "C" int manager();
+extern "C" long int read_clock();
 
 using namespace std;
 
 int main() {
-    cout << "Welcome to Arrays of Integers\n"
+     long int starttics = read_clock();
+     cout<<"The time on the CPU clock is: "<<starttics<<endl;
+
+     cout << "Welcome to Arrays sorter\n"
          << "Brought to you by Joseph Haddad\n";
 
-    manager();
+     manager();
 
 
-    cout// << "Main received "<<returnval<<" and is not sure what to do with it.\n"
+     cout// << "Main received "<<returnval<<" and is not sure what to do with it.\n"
          << "Main will return 0 to the operating system.   Bye.\n";
+     long int endtics = read_clock();
+     cout<<"The time on the CPU clock is: "<<endtics<<endl;
+     
+     long int difference = endtics-starttics;
+     cout<<"The time difference is: "<<difference<<endl<<endl;
 
-    return 0;
+
+     return 0;
 }
