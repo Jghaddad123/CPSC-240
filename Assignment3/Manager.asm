@@ -11,9 +11,9 @@
 ;
 ;Program information
 ;  Program name: Array sort
-;  Programming languages: 4 modules in C++, 4 module in X86-64, and 1 module in Bash.
-;  Date program began: 2020-Oct-18
-;  Date of last update: 2020-Oct-20
+;  Programming languages: 4 modules in C++, 5 module in X86-64, and 1 module in Bash.
+;  Date program began: 2020-Nov-3
+;  Date of last update: 2020-Nov-3
 ;  Status: This program was tested by the author many times.
 ;
 ;This file
