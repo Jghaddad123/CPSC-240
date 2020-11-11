@@ -3,17 +3,17 @@
 ; Author name: Joseph Haddad
 ;
 ;Program information
-;  Program name: Array Sum
-;  Programming languages: 4 modules in C++, 5 module in X86-64, and 1 module in Bash.
-;  Date program began: 2020-Nov-3
-;  Date of last update: 2020-Nov-3
+;  Program name: Triangle area
+;  Programming languages: 2 modules in C++, 1 module in X86-64, and 1 module in Bash.
+;  Date program began: 2020-Nov-10
+;  Date of last update: 2020-Nov-10
 ;  Status: This program was tested by the author many times.
 ;
 ;This file
-;  Name: main.cpp
+;  Name: triangle.cpp
 ;  Language: C++
 ;  Syntax: Intel
-;  Assemble: nasm -f elf64 -l Manager.lis -o Manager.o Manager.cpp
+;  Assemble: nasm -f elf64 -l triangle.lis -o triangle.o triangle.cpp
 ;  Purpose: Manage the process of adding an array given by the user
 ;
 ;
@@ -24,12 +24,12 @@ extern "C" float area();
 using namespace std;
 
 int main() {
-     
-     cout << "Welcome to Triangle area finder\n"
+    double result;
+    cout << "Welcome to Triangle area finder\n"
          << "Brought to you by Joseph Haddad\n";
 
-     area();
-
-
+    result = area();
+    cout << "The driver received this number 0x" << *(unsigned long*)&result << "and will keep it.\n";       //Printing results
+    cout << "Now 0 will be returned to the operating system. Bye\n"
      return 0;
 }
