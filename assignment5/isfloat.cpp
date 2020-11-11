@@ -30,10 +30,13 @@
 */
 #include <iostream>
 using namespace std;
-extern "C" bool isfloat(string string);
+extern "C" bool isfloat(char temp[]);
 
 
-bool isfloat(string string){                                                    //Call function passing parameter string expecting boolean return
+bool isfloat(char temp[]){     
+    string string;
+    string = temp;
+                                                   //Call function passing parameter string expecting boolean return
     string::const_iterator it = string.begin();                                 // holds position 0 in string
     // the line above can be substituted with a "int it=0;" but then need to do "string[it]" everywhere that "*it" is and "string.size" for all "string.end()"
 
