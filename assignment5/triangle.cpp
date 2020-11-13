@@ -20,16 +20,16 @@
 ;===== Begin code area =======================================================================================
 */
         #include <iostream>
-extern "C" float area();
+extern "C" double area();
 using namespace std;
 
 int main() {
-    double result;
-    cout << "Welcome to Triangle area finder\n"
+    double result=0;
+     cout << "Welcome to Triangle area finder\n"
          << "Brought to you by Joseph Haddad\n";
 
-    result = area();
-    cout << "The driver received this number 0x" << *(unsigned long*)&result << "and will keep it.\n";       //Printing results
-    cout << "Now 0 will be returned to the operating system. Bye\n"
+     result = area();
+     printf("%s%lx%s", "\nThe driver received this number, 0x ", *(unsigned long*)&result, " and will keep it. \n");
+     cout << "Now 0 will be returned to the operating system. Bye\n";
      return 0;
 }

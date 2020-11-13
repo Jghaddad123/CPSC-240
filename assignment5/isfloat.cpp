@@ -1,12 +1,9 @@
 /*
-;This is a library function distributed without accompanying software.                                                      *
-;This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public   *
-;License version 3 as published by the Free Software Foundation.  This program is distributed in the hope that it will be   *
-;useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.*
-;See the GNU General Public License for more details.  A copy of the GNU Lesser General Public License 3.0 should have been *
-;distributed with this function.  If the LGPL does not accompany this software then it is available here:                    *
-;<https:;www.gnu.org/licenses/>.
-;
+Copyright © 2007 Free Software Foundation, Inc. <https://fsf.org/>
+
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+This version of the GNU Lesser General Public License incorporates the terms and conditions of version 3 of the GNU General Public License, supplemented by the additional permissions listed below.
+
 ;Author information
 ; Author name: Joseph Haddad
 ;
@@ -34,28 +31,28 @@ extern "C" bool isfloat(char temp[]);
 
 
 bool isfloat(char temp[]){     
-    string string;
-    string = temp;
+    string s;
+    s = temp;
                                                    //Call function passing parameter string expecting boolean return
-    string::const_iterator it = string.begin();                                 // holds position 0 in string
+    string::const_iterator it = s.begin();                                 // holds position 0 in string
     // the line above can be substituted with a "int it=0;" but then need to do "string[it]" everywhere that "*it" is and "string.size" for all "string.end()"
 
     bool decimalPoint = false;                                                  // create boolean for checking decimal later initially false = no decimal in string yet
     long unsigned int minSize = 0;
 
-    if (string.size() > 0 && (string[0] == '-' || string[0] =='+')) {           // checks for - or + and only allows them for position 0 in string
+    if (s.size() > 0 && (s[0] =='+')) {           // checks for - or + and only allows them for position 0 in string
         it++;                                                                   // increments constant iterator
         minSize++;
     }
 
-    while (it != string.end()) {                                                //while it < size of string
+    while (it != s.end()) {                                                //while it < size of string
         if (*it == '.') {                                                       // if *it is decimal make decimalPoint true
             if (!decimalPoint){ decimalPoint = true;}
             else break;                                                                             // else return false
-        } else if (!isdigit(*it) && ((*it != 'f') || it + 1 != string.end() || !decimalPoint)) {    //checks if it is a float
+        } else if (!isdigit(*it) && ((*it != 'f') || it + 1 != s.end() || !decimalPoint)) {    //checks if it is a float
             break;
         }
         ++it;
     }
-    return string.size() > minSize && it == string.end();
+    return s.size() > minSize && it == s.end();
 }
